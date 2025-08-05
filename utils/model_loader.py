@@ -1,3 +1,4 @@
+
 import os
 import sys
 from dotenv import load_dotenv
@@ -8,8 +9,7 @@ from langchain_groq import ChatGroq
 #from langchain_openai import ChatOpenAI
 from logger.custom_logger import CustomLogger
 from exception.custom_exception import DocumentPortalException
-
-log =CustomLogger.get_logger(__name__)
+log = CustomLogger().get_logger(__name__)
 
 class ModelLoader:
     
@@ -83,7 +83,7 @@ class ModelLoader:
         elif provider == "groq":
             llm=ChatGroq(
                 model=model_name,
-                api_key=self.api_keys["GROQ_API_KEY"],
+                api_key=self.api_keys["GROQ_API_KEY"], #type: ignore
                 temperature=temperature,
             )
             return llm
